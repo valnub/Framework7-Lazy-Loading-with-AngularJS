@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="angularApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <link rel="stylesheet" href="lib/f7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="lib/f7/css/framework7.ios.colors.min.css">
+  </head>
+  <body>
+    <div class="views">
+      <div class="view view-main">
+        <div class="pages" ng-controller="controller">
+          <div data-page="home" class="page navbar-fixed">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left"> </div>
+                <div class="center">Lazy Load</div>
+                <div class="right"> </div>
+              </div>
+            </div>
+            <div class="page-content" ng-scroll="scrolled()">
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <img ng-repeat="img in imgs" lazy-img="{{img}}" width="300px" height="200px" style="display:block;margin-bottom:20px">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="lib/f7/js/framework7.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/angular-lazy-img/angular-lazy-img.js"></script>
+    <script>
+
+      var f7app = new Framework7();
+      var angularApp = angular.module('angularApp', ['angularLazyImg']);
+      angularApp.controller('controller', ['$scope','$rootScope',
+        function ($scope, $rootScope) {
+
+          Dom7('.page-content').on("scroll", function () {
+            $rootScope.$emit('lazyImg:refresh');
+          });
+
+          var baseurl = 'http://lorempixel.com/500/500/nature/';
+          var imgs = [];
+          for (var i=0; i<11; i++){
+            imgs.push(baseurl + i);
+          }
+          $scope.imgs = imgs;
+        }
+      ]);
+    </script>
+  </body>
+</html>
