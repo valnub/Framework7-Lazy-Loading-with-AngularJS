@@ -3,7 +3,7 @@
 ## Compatibility
 
 - Framework7 v1
-- Vue 2.x or higher
+- Angular 1.x
 
 If you use Framework7's built-in lazy loading mechanism with AngularJS and also use data-binding for images in their src-Attribute, lazy loading will not work. This demo shows how to fix this issue.
 
