@@ -1,4 +1,4 @@
-# Demo app: How to lazy load images with AngularJS on Framework7
+# Demo app: How to lazy load images with Angular 1.x on Framework7 V1
 
 ## Compatibility
 
